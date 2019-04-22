@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{type.charAt(0).toUpperCase() + type.slice(1)}} Money</ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="close()">
+          Close
+          <ion-icon slot="end" name="close-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form style="text-align: center" [formGroup]="ngForm" (submit)="submit()">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">Solde</ion-label>
+            <ion-input formControlName="solde" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea formControlName="description" type="text"></ion-textarea>
+          </ion-item>
+        </ion-list>
+        <ion-label *ngIf="error!=null" color="danger">{{error}}<br></ion-label>
+        <br>
+        <ion-button color="dark" type="submit" [disabled]="!ngForm.valid && !buttondiabled">
+          <ion-icon name="create"></ion-icon>&nbsp;Confirm
+        </ion-button>
+      </form>
+  <ion-card *ngFor="let item of trans">
+      <ion-card-header>
+        <ion-card-subtitle *ngIf="item.type=='add'" color="success">{{item.dateInsert | date :'short'}} {{item.type}}</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="item.type!='add'" color="danger">{{item.dateInsert | date :'short'}} {{item.type}}</ion-card-subtitle>
+        <ion-card-title *ngIf="item.type=='add'" color="success">{{item.solde}}</ion-card-title>
+        <ion-card-title *ngIf="item.type!='add'" color="danger">{{item.solde}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+          {{item.description}}
+      </ion-card-content>
+  </ion-card>
+</ion-content>

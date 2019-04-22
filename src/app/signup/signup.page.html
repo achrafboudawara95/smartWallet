@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="text-align: center">
+    <br>
+    <h1 style="margin-left:-30px;text-align:center;color:#252A34">SMART <span style="border-radius:5px;padding:5px;background-color:#252A34;color:#FF2E63;position:absolute;margin-left:10px;margin-top:-10px;font-size:20px;">Wallet</span></h1>
+    <br>
+    <form [formGroup]="ngForm" (submit)="submit()">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Display Name</ion-label>
+            <ion-input formControlName="fullName" type="text"></ion-input>
+          </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input formControlName="password" type="password"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-label *ngIf="error!=null" color="danger">{{error}}<br></ion-label>
+      <br>
+      <ion-button color="dark" type="submit" (click)="resetError()" [disabled]="!ngForm.valid">
+          <ion-icon name="log-in"></ion-icon>&nbsp;Register
+      </ion-button>
+    </form>
+    <br><br>
+    <ion-progress-bar *ngIf="progressBar!=0" type="indeterminate"></ion-progress-bar>
+  </ion-content>
+  

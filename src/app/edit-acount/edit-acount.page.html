@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-button (click)="nav.navigateRoot('/tabs/acounts')">
+              <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-title>Edit Acount</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content style="text-align: center">
+    <form [formGroup]="ngForm" (submit)="submit()">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Banque Name</ion-label>
+          <ion-input formControlName="nomBanque" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Acount Id</ion-label>
+          <ion-input formControlName="numAcount" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Acount Type</ion-label>
+          <ion-input formControlName="typeAcount" type="text"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-label *ngIf="error!=null" color="danger">{{error}}<br></ion-label>
+      <br>
+      <ion-button color="dark" type="submit" (click)="resetError()" [disabled]="!ngForm.valid">
+        <ion-icon name="create"></ion-icon>&nbsp;Edit
+      </ion-button>
+    </form>
+  </ion-content>
+  

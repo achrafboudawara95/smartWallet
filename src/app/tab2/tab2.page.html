@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Profile
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        Log-out
+        <ion-icon slot="end" name="exit"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content style="text-align: center">
+  <br><br>
+  <ion-avatar class="avatar">
+    <ion-img *ngIf="authServ.authUser.image!=null" [src]="authServ.authUser.image"></ion-img>
+    <ion-img *ngIf="authServ.authUser.image==null" [src]="'../../assets/img/profile.png'"></ion-img>
+  </ion-avatar>
+  <ion-list>
+    <ion-item>
+      <ion-label>Email : {{authServ.authUser.email}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Full Name : {{authServ.authUser.fullname}}</ion-label>
+    </ion-item>
+        <form *ngIf="authServ.authUser.image==nul" [formGroup]="ngForm" (submit)="updatePassword()">
+          <ion-item>
+            <ion-label position="floating">New Password</ion-label>
+            <ion-input formControlName="password" type="password"></ion-input>
+          </ion-item>
+          <ion-button color="dark" type="submit" [disabled]="!ngForm.valid">
+            update Password
+            <ion-icon slot="end" name="lock"></ion-icon>
+          </ion-button>
+        </form>
+  </ion-list>
+</ion-content>
